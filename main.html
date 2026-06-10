@@ -8,6 +8,140 @@
 
 <body>
 	<!-- the entire body must be written by student -->
+	<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .checkbox-group label {
+            margin-left: 5px;
+        }
+        input[type="submit"], #existing {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+        }
+        #existing {
+            background-color: #28a745;
+            color: white;
+            margin-top: 10px;
+            display: none; /* Hidden initially */
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h1>Login Form</h1>
+    <form id="loginForm">
+        <div class="form-group">
+            <input type="text" id="username" placeholder="Username" required>
+        </div>
+        <div class="form-group">
+            <input type="password" id="password" placeholder="Password" required>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="checkbox">
+            <label for="checkbox">Remember me.</label>
+        </div>
+        <input type="submit" id="submit" value="Submit">
+    </form>
+    <button id="existing">Login as existing user</button>
+</div>
+
+<script>
+    const form = document.getElementById('loginForm');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const rememberCheckbox = document.getElementById('checkbox');
+    const existingBtn = document.getElementById('existing');
+
+    // Function to check localStorage and toggle the existing user button
+    function checkExistingUser() {
+        const savedUser = localStorage.getItem('username');
+        if (savedUser) {
+            existingBtn.style.display = 'block';
+        } else {
+            existingBtn.style.display = 'none';
+        }
+    }
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+
+        alert(`Logged in as ${username}`);
+
+        if (rememberCheckbox.checked) {
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+        } else {
+            localStorage.removeItem('username');
+            localStorage.removeItem('password');
+        }
+
+        checkExistingUser();
+    });
+
+	existingBtn.addEventListener('click', function() {
+        const savedUser = localStorage.getItem('username');
+        if (savedUser) {
+            alert(`Logged in as ${savedUser}`);
+        }
+    });
+
+     checkExistingUser();
+</script>
+
+</body>
+</html>
+
     <script type="text/javascript" src="./script.js">
 </script>
 
