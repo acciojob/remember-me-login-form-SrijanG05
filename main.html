@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-
-<html>
-
-<head>
-	<link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
-	<!-- the entire body must be written by student -->
-	<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -111,6 +101,7 @@
         }
     }
 
+    // Handle standard form submission
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         const username = usernameInput.value;
@@ -129,22 +120,17 @@
         checkExistingUser();
     });
 
-	existingBtn.addEventListener('click', function() {
+    // Handle existing user login button click
+    existingBtn.addEventListener('click', function() {
         const savedUser = localStorage.getItem('username');
         if (savedUser) {
             alert(`Logged in as ${savedUser}`);
         }
     });
 
-     checkExistingUser();
+    // Run on page load to set correct initial button visibility
+    checkExistingUser();
 </script>
 
 </body>
-</html>
-
-    <script type="text/javascript" src="./script.js">
-</script>
-
-</body>
-
 </html>
